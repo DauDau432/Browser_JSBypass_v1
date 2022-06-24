@@ -103,12 +103,12 @@ cookie để trình duyệt sử dụng.
 
 Thông số | Ghi chú
 |-|-|
-phiên họp | Không bắt buộc. ID phiên mà bạn muốn được chỉ định cho phiên bản. Nếu không được đặt, một UUID ngẫu nhiên sẽ được chỉ định.
+session | Không bắt buộc. ID phiên mà bạn muốn được chỉ định cho phiên bản. Nếu không được đặt, một UUID ngẫu nhiên sẽ được chỉ định.
 
 #### + `sessions.list`
 
-Trả về danh sách tất cả các phiên hoạt động. Nhiều hơn để gỡ lỗi nếu bạn muốn xem có bao nhiêu phiên đang chạy.
-Bạn phải luôn đảm bảo đóng đúng cách mỗi phiên khi bạn sử dụng xong chúng vì quá nhiều có thể làm chậm
+Trả về danh sách tất cả các session hoạt động. Nhiều hơn để gỡ lỗi nếu bạn muốn xem có bao nhiêu session đang chạy.
+Bạn phải luôn đảm bảo đóng đúng cách mỗi session khi bạn sử dụng xong chúng vì quá nhiều có thể làm chậm
 máy tính bị sập.
 
 Example response:
@@ -126,7 +126,7 @@ Example response:
 #### + `sessions.destroy`
 
 Thao tác này sẽ tắt đúng cách một phiên bản trình duyệt và xóa tất cả các tệp được liên kết với nó để giải phóng tài nguyên cho một phiên bản mới
-phiên họp. Khi bạn không cần sử dụng một phiên nữa, bạn nên đảm bảo đóng phiên đó.
+session. Khi bạn không cần sử dụng một session nữa, bạn nên đảm bảo đóng session đó.
 
 Thông số | Ghi chú
 |--|--|
@@ -137,7 +137,7 @@ session  | ID session mà bạn muốn bị hủy.
 Thông số | Ghi chú
 |--|--|
 url | Bắt buộc
-phiên họp | Không bắt buộc. Sẽ gửi yêu cầu từ và phiên bản trình duyệt hiện có. Nếu một trong những không được gửi, nó sẽ tạo ra một phiên bản tạm thời sẽ bị hủy ngay lập tức sau khi yêu cầu được hoàn thành.
+session | Không bắt buộc. Sẽ gửi yêu cầu từ và phiên bản trình duyệt hiện có. Nếu một trong những không được gửi, nó sẽ tạo ra một phiên bản tạm thời sẽ bị hủy ngay lập tức sau khi yêu cầu được hoàn thành.
 maxTimeout | Giá trị mặc định, tùy chọn 60000. Thời gian chờ tối đa để giải quyết thử thách tính bằng mili giây.
 bánh quy | Không bắt buộc. Sẽ được sử dụng bởi trình duyệt không đầu. Theo dõi [cái này](https://github.com/puppeteer/puppeteer/blob/v3.3.0/docs/api.md#pagesetcookiecookies) định dạng.
 returnOnlyCookies | Tùy chọn, mặc định là false. Chỉ trả lại các cookie. Dữ liệu phản hồi, tiêu đề và các phần khác của phản hồi bị xóa.
