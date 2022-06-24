@@ -107,9 +107,9 @@ phiên họp | Không bắt buộc. ID phiên mà bạn muốn được chỉ đ
 
 #### + `sessions.list`
 
-Returns a list of all the active sessions. More for debugging if you are curious to see how many sessions are running.
-You should always make sure to properly close each session when you are done using them as too many may slow your
-computer down.
+Trả về danh sách tất cả các phiên hoạt động. Nhiều hơn để gỡ lỗi nếu bạn muốn xem có bao nhiêu phiên đang chạy.
+Bạn phải luôn đảm bảo đóng đúng cách mỗi phiên khi bạn sử dụng xong chúng vì quá nhiều có thể làm chậm
+máy tính bị sập.
 
 Example response:
 
@@ -125,27 +125,26 @@ Example response:
 
 #### + `sessions.destroy`
 
-This will properly shutdown a browser instance and remove all files associated with it to free up resources for a new
-session. When you no longer need to use a session you should make sure to close it.
+Thao tác này sẽ tắt đúng cách một phiên bản trình duyệt và xóa tất cả các tệp được liên kết với nó để giải phóng tài nguyên cho một phiên bản mới
+phiên họp. Khi bạn không cần sử dụng một phiên nữa, bạn nên đảm bảo đóng phiên đó.
 
-Parameter | Notes
+Thông số | Ghi chú
 |--|--|
-session | The session ID that you want to be destroyed.
+session  | ID session mà bạn muốn bị hủy.
 
 #### + `request.get`
 
-Parameter | Notes
+Thông số | Ghi chú
 |--|--|
-url | Mandatory
-session | Optional. Will send the request from and existing browser instance. If one is not sent it will create a temporary instance that will be destroyed immediately after the request is completed.
-maxTimeout | Optional, default value 60000. Max timeout to solve the challenge in milliseconds.
-cookies | Optional. Will be used by the headless browser. Follow [this](https://github.com/puppeteer/puppeteer/blob/v3.3.0/docs/api.md#pagesetcookiecookies) format.
-returnOnlyCookies | Optional, default false. Only returns the cookies. Response data, headers and other parts of the response are removed.
-proxy | Optional, default disabled. Eg: `"proxy": {"url": "http://127.0.0.1:8888"}`. You must include the proxy schema in the URL: `http://`, `socks4://` or `socks5://`. Authorization (username/password) is not supported.
+url | Bắt buộc
+phiên họp | Không bắt buộc. Sẽ gửi yêu cầu từ và phiên bản trình duyệt hiện có. Nếu một trong những không được gửi, nó sẽ tạo ra một phiên bản tạm thời sẽ bị hủy ngay lập tức sau khi yêu cầu được hoàn thành.
+maxTimeout | Giá trị mặc định, tùy chọn 60000. Thời gian chờ tối đa để giải quyết thử thách tính bằng mili giây.
+bánh quy | Không bắt buộc. Sẽ được sử dụng bởi trình duyệt không đầu. Theo dõi [cái này](https://github.com/puppeteer/puppeteer/blob/v3.3.0/docs/api.md#pagesetcookiecookies) định dạng.
+returnOnlyCookies | Tùy chọn, mặc định là false. Chỉ trả lại các cookie. Dữ liệu phản hồi, tiêu đề và các phần khác của phản hồi bị xóa.
+proxy | Tùy chọn, mặc định bị vô hiệu hóa. Ví dụ: `"proxy": {"url": "http://127.0.0.1:8888"}`. Bạn phải bao gồm giản đồ proxy trong URL: `http://`, `socks4://` hoặc `socks5://`. Cấp quyền (tên người dùng / mật khẩu) không được hỗ trợ.
+:cảnh báo: Nếu bạn muốn sử dụng cookie xóa Cloudflare trong các tập lệnh của mình, hãy đảm bảo rằng bạn cũng sử dụng Tác nhân người dùng FlareSolverr. Nếu chúng không khớp, bạn sẽ thấy thử thách.
 
-:warning: If you want to use Cloudflare clearance cookie in your scripts, make sure you use the FlareSolverr User-Agent too. If they don't match you will see the challenge.
-
-Example response from running the `curl` above:
+Phản hồi ví dụ khi chạy `curl` ở trên:
 
 ```json
 {
@@ -206,13 +205,13 @@ Example response from running the `curl` above:
 
 ### + `request.post`
 
-This is the same as `request.get` but it takes one more param:
+Điều này giống với `request.get` nhưng cần thêm một tham số:
 
 Parameter | Notes
 |--|--|
 postData | Must be a string with `application/x-www-form-urlencoded`. Eg: `a=b&c=d`
 
-## Environment variables
+## Các biến môi trường
 
 Name | Default | Notes
 |--|--|--|
@@ -233,11 +232,11 @@ Các biến môi trường được thiết lập khác nhau tùy thuộc vào h
 
 ## Trình giải Captcha
 
-: Cảnh báo: Tại thời điểm này, không có trình giải mã hình ảnh xác thực nào hoạt động. Bạn có thể kiểm tra trạng thái trong các vấn đề mở. Mọi sự giúp đỡ đều được hoan nghênh.
+:Cảnh báo: Tại thời điểm này, không có trình giải mã hình ảnh xác thực nào hoạt động. Bạn có thể kiểm tra trạng thái trong các vấn đề mở. Mọi sự giúp đỡ đều được hoan nghênh.
 
 Đôi khi CloudFlare không chỉ đưa ra các phép tính toán học và kiểm tra trình duyệt, đôi khi chúng còn yêu cầu người dùng
 giải quyết một hình ảnh xác thực.
-Nếu đúng như vậy, FlareSolverr sẽ trả về lỗi `Captcha đã được phát hiện nhưng không có bộ giải tự động nào được định cấu hình. '
+Nếu đúng như vậy, FlareSolverr sẽ trả về lỗi `Captcha đã được phát hiện nhưng không có bộ giải tự động nào được định cấu hình.'
 
 FlareSolverr có thể được tùy chỉnh để giải mã captcha tự động bằng cách đặt biến môi trường `CAPTCHA_SOLVER`
 vào tên tệp của một trong các bộ điều hợp bên trong thư mục [/captcha](src/captcha).
