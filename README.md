@@ -8,45 +8,45 @@
 [![Donate Bitcoin](https://en.cryptobadges.io/badge/micro/13Hcv77AdnFWEUZ9qUpoPBttQsUT7q9TTh)](https://en.cryptobadges.io/donate/13Hcv77AdnFWEUZ9qUpoPBttQsUT7q9TTh)
 [![Donate Ethereum](https://en.cryptobadges.io/badge/micro/0x0D1549BbB00926BF3D92c1A8A58695e982f1BE2E)](https://en.cryptobadges.io/donate/0x0D1549BbB00926BF3D92c1A8A58695e982f1BE2E)
 
-FlareSolverr is a proxy server to bypass Cloudflare protection.
+FlareSolverr là một máy chủ proxy để vượt qua bảo vệ Cloudflare.
 
-## How it works
+## Làm thế nào nó hoạt động
 
-FlareSolverr starts a proxy server and it waits for user requests in an idle state using few resources.
-When some request arrives, it uses [puppeteer](https://github.com/puppeteer/puppeteer) with the
+FlareSolverr khởi động một máy chủ proxy và nó đợi yêu cầu của người dùng ở trạng thái nhàn rỗi sử dụng ít tài nguyên.
+Khi một số yêu cầu đến, nó sử dụng [puppeteer](https://github.com/puppeteer/puppeteer) với
 [stealth plugin](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
-to create a headless browser (Firefox). It opens the URL with user parameters and waits until the Cloudflare challenge
-is solved (or timeout). The HTML code and the cookies are sent back to the user, and those cookies can be used to
-bypass Cloudflare using other HTTP clients.
+để tạo một trình duyệt không có đầu (Firefox). Nó mở URL với các thông số người dùng và đợi cho đến khi thử thách Cloudflare
+được giải quyết (hoặc hết thời gian chờ). Mã HTML và cookie được gửi lại cho người dùng và những cookie đó có thể được sử dụng để
+bỏ qua Cloudflare bằng cách sử dụng các ứng dụng khách HTTP khác.
 
-**NOTE**: Web browsers consume a lot of memory. If you are running FlareSolverr on a machine with few RAM, do not make
-many requests at once. With each request a new browser is launched.
+**Ghi chú**: Trình duyệt web tiêu tốn rất nhiều bộ nhớ. Nếu bạn đang chạy FlareSolverr trên một máy có ít RAM, đừng thực hiện
+nhiều yêu cầu cùng một lúc. Với mỗi yêu cầu, một trình duyệt mới được khởi chạy.
 
-It is also possible to use a permanent session. However, if you use sessions, you should make sure to close them as
-soon as you are done using them.
+Nó cũng có thể sử dụng một phiên cố định. Tuy nhiên, nếu bạn sử dụng các phiên, bạn nên đảm bảo đóng chúng dưới dạng
+ngay sau khi bạn hoàn thành việc sử dụng chúng.
 
-## Installation
+## Cài đặt
 
 ### Docker
 
-It is recommended to install using a Docker container because the project depends on an external browser that is
-already included within the image.
+Bạn nên cài đặt bằng cách sử dụng vùng chứa Docker vì dự án phụ thuộc vào trình duyệt bên ngoài
+đã được bao gồm trong hình ảnh.
 
-Docker images are available in:
+Hình ảnh Docker có sẵn trong:
 * GitHub Registry => https://github.com/orgs/FlareSolverr/packages/container/package/flaresolverr
 * DockerHub => https://hub.docker.com/r/flaresolverr/flaresolverr
 
-Supported architectures are:
-| Architecture | Tag |
+Các phiên bản hệ thống được hỗ trợ là:
+| phiên bản | Nhãn |
 | :----: | --- |
 | x86-64 | linux/amd64 |
 | ARM64 | linux/arm64 |
 | ARM32 | linux/arm/v7 |
 
-We provide a `docker-compose.yml` configuration file. Clone this repository and execute `docker-compose up -d` to start
-the container.
+Chúng tôi cung cấp tệp cấu hình `docker-compile.yml`. Sao chép kho lưu trữ này và thực thi `docker-compile up -d` để bắt đầu
+thùng chứa.
 
-If you prefer the `docker cli` execute the following command.
+Nếu bạn thích `docker cli`, hãy thực hiện lệnh sau.
 ```bash
 docker run -d \
   --name=flaresolverr \
@@ -56,31 +56,31 @@ docker run -d \
   ghcr.io/flaresolverr/flaresolverr:latest
 ```
 
-### Precompiled binaries
+### Các tệp nhị phân được biên dịch trước
 
-This is the recommended way for Windows users.
-* Download the [FlareSolverr zip](https://github.com/FlareSolverr/FlareSolverr/releases) from the release's assets. It is available for Windows and Linux.
-* Extract the zip file. FlareSolverr executable and firefox folder must be in the same directory.
-* Execute FlareSolverr binary. In the environment variables section you can find how to change the configuration.
+Đây là cách được khuyến nghị cho người dùng Windows.
+* Tải về [FlareSolverr zip](https://github.com/FlareSolverr/FlareSolverr/releases) từ nội dung của bản phát hành. Nó có sẵn cho Windows và Linux.
+* Giải nén tệp zip. Thư mục thực thi FlareSolverr và firefox phải nằm trong cùng một thư mục.
+* Thực hiện nhị phân FlareSolverr. Trong phần biến môi trường, bạn có thể tìm thấy cách thay đổi cấu hình.
 
-### From source code
+### Từ mã nguồn
 
-This is the recommended way for macOS users and for developers.
-* Install [NodeJS](https://nodejs.org/) 16.
-* Clone this repository and open a shell in that path.
-* Run `export PUPPETEER_PRODUCT=firefox` (Linux/macOS) or `set PUPPETEER_PRODUCT=firefox` (Windows).
-* Run `npm install` command to install FlareSolverr dependencies.
-* Run `npm start` command to compile TypeScript code and start FlareSolverr.
+Đây là cách được khuyến nghị cho người dùng macOS và cho các nhà phát triển.
+* Cài đặt [NodeJS](https://nodejs.org/) 16.
+* Sao chép kho lưu trữ này và mở một trình bao trong đường dẫn đó.
+* Chạy `export PUPPETEER_PRODUCT=firefox` (Linux/macOS) hoặc `set PUPPETEER_PRODUCT=firefox` (Windows).
+* Chạy `npm install` lệnh để cài đặt các phụ thuộc FlareSolverr.
+* Chạy `npm start` lệnh biên dịch mã TypeScript và khởi động FlareSolverr.
 
-If you get errors related to firefox not installed try running `node node_modules/puppeteer/install.js` to install Firefox.
+Nếu bạn gặp lỗi liên quan đến firefox chưa được cài đặt, hãy thử chạy `node node_modules / puppeteer / install.js` để cài đặt Firefox.
 
-### Systemd service
+### Dịch vụ Systemd
 
-We provide an example Systemd unit file `flaresolverr.service` as reference. You have to modify the file to suit your needs: paths, user and environment variables.
+Chúng tôi cung cấp một tệp đơn vị Systemd mẫu `flaresolverr.service` làm tài liệu tham khảo. Bạn phải sửa đổi tệp cho phù hợp với nhu cầu của mình: đường dẫn, biến người dùng và môi trường.
 
-## Usage
+## Cách sử dụng
 
-Example request:
+Yêu cầu mẫu:
 ```bash
 curl -L -X POST 'http://localhost:8191/v1' \
 -H 'Content-Type: application/json' \
@@ -91,19 +91,19 @@ curl -L -X POST 'http://localhost:8191/v1' \
 }'
 ```
 
-### Commands
+### Lệnh
 
 #### + `sessions.create`
 
-This will launch a new browser instance which will retain cookies until you destroy it with `sessions.destroy`.
-This comes in handy, so you don't have to keep solving challenges over and over and you won't need to keep sending
-cookies for the browser to use.
+Thao tác này sẽ khởi chạy một phiên bản trình duyệt mới sẽ giữ lại cookie cho đến khi bạn phá hủy nó bằng `session.destroy`.
+Điều này rất hữu ích, vì vậy bạn không phải tiếp tục giải quyết các thử thách lặp đi lặp lại và bạn sẽ không cần tiếp tục gửi
+cookie để trình duyệt sử dụng.
 
-This also speeds up the requests since it won't have to launch a new browser instance for every request.
+Điều này cũng tăng tốc các yêu cầu vì nó sẽ không phải khởi chạy phiên bản trình duyệt mới cho mọi yêu cầu.
 
-Parameter | Notes
-|--|--|
-session | Optional. The session ID that you want to be assigned to the instance. If isn't set a random UUID will be assigned.
+Thông số | Ghi chú
+|-|-|
+phiên họp | Không bắt buộc. ID phiên mà bạn muốn được chỉ định cho phiên bản. Nếu không được đặt, một UUID ngẫu nhiên sẽ được chỉ định.
 
 #### + `sessions.list`
 
@@ -226,22 +226,22 @@ TEST_URL | https://www.google.com | FlareSolverr makes a request on start to mak
 PORT | 8191 | Listening port. You don't need to change this if you are running on Docker.
 HOST | 0.0.0.0 | Listening interface. You don't need to change this if you are running on Docker.
 
-Environment variables are set differently depending on the operating system. Some examples:
-* Docker: Take a look at the Docker section in this document. Environment variables can be set in the `docker-compose.yml` file or in the Docker CLI command.
-* Linux: Run `export LOG_LEVEL=debug` and then start FlareSolverr in the same shell.
-* Windows: Open `cmd.exe`, run `set LOG_LEVEL=debug` and then start FlareSolverr in the same shell.
+Các biến môi trường được thiết lập khác nhau tùy thuộc vào hệ điều hành. Vài ví dụ:
+* Docker: Hãy xem phần Docker trong tài liệu này. Các biến môi trường có thể được đặt trong tệp `docker-compos.yml` hoặc trong lệnh Docker CLI.
+* Linux: Chạy `export LOG_LEVEL = debug` và sau đó khởi động FlareSolverr trong cùng một trình bao.
+* Windows: Mở `cmd.exe`, chạy` set LOG_LEVEL = debug` rồi khởi động FlareSolverr trong cùng một trình bao.
 
-## Captcha Solvers
+## Trình giải Captcha
 
-:warning: At this time none of the captcha solvers work. You can check the status in the open issues. Any help is welcome.
+: Cảnh báo: Tại thời điểm này, không có trình giải mã hình ảnh xác thực nào hoạt động. Bạn có thể kiểm tra trạng thái trong các vấn đề mở. Mọi sự giúp đỡ đều được hoan nghênh.
 
-Sometimes CloudFlare not only gives mathematical computations and browser tests, sometimes they also require the user to
-solve a captcha.
-If this is the case, FlareSolverr will return the error `Captcha detected but no automatic solver is configured.`
+Đôi khi CloudFlare không chỉ đưa ra các phép tính toán học và kiểm tra trình duyệt, đôi khi chúng còn yêu cầu người dùng
+giải quyết một hình ảnh xác thực.
+Nếu đúng như vậy, FlareSolverr sẽ trả về lỗi `Captcha đã được phát hiện nhưng không có bộ giải tự động nào được định cấu hình. '
 
-FlareSolverr can be customized to solve the captchas automatically by setting the environment variable `CAPTCHA_SOLVER`
-to the file name of one of the adapters inside the [/captcha](src/captcha) directory.
+FlareSolverr có thể được tùy chỉnh để giải mã captcha tự động bằng cách đặt biến môi trường `CAPTCHA_SOLVER`
+vào tên tệp của một trong các bộ điều hợp bên trong thư mục [/captcha](src/captcha).
 
-## Related projects
+## Các dự án liên quan
 
-* C# implementation => https://github.com/FlareSolverr/FlareSolverrSharp
+* C# thực hiện => https://github.com/FlareSolverr/FlareSolverrSharp
