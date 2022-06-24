@@ -143,7 +143,7 @@ bánh quy | Không bắt buộc. Sẽ được sử dụng bởi trình duyệt 
 returnOnlyCookies | Tùy chọn, mặc định là false. Chỉ trả lại các cookie. Dữ liệu phản hồi, tiêu đề và các phần khác của phản hồi bị xóa.
 proxy | Tùy chọn, mặc định bị vô hiệu hóa. Ví dụ: `"proxy": {"url": "http://127.0.0.1:8888"}`. Bạn phải bao gồm giản đồ proxy trong URL: `http://`, `socks4://` hoặc `socks5://`. Cấp quyền (tên người dùng / mật khẩu) không được hỗ trợ.
 
-:cảnh báo: Nếu bạn muốn sử dụng cookie xóa Cloudflare trong các tập lệnh của mình, hãy đảm bảo rằng bạn cũng sử dụng Tác nhân người dùng FlareSolverr. Nếu chúng không khớp, bạn sẽ thấy thử thách.
+**Cảnh báo**: Nếu bạn muốn sử dụng cookie xóa Cloudflare trong các tập lệnh của mình, hãy đảm bảo rằng bạn cũng sử dụng Tác nhân người dùng FlareSolverr. Nếu chúng không khớp, bạn sẽ thấy thử thách.
 
 Phản hồi ví dụ khi chạy `curl` ở trên:
 
@@ -233,7 +233,7 @@ Các biến môi trường được thiết lập khác nhau tùy thuộc vào h
 
 ## Trình giải Captcha
 
-:Cảnh báo: Tại thời điểm này, không có trình giải mã hình ảnh xác thực nào hoạt động. Bạn có thể kiểm tra trạng thái trong các vấn đề mở. Mọi sự giúp đỡ đều được hoan nghênh.
+**Cảnh báo**: Tại thời điểm này, không có trình giải mã hình ảnh xác thực nào hoạt động. Bạn có thể kiểm tra trạng thái trong các vấn đề mở. Mọi sự giúp đỡ đều được hoan nghênh.
 
 Đôi khi CloudFlare không chỉ đưa ra các phép tính toán học và kiểm tra trình duyệt, đôi khi chúng còn yêu cầu người dùng
 giải quyết một hình ảnh xác thực.
