@@ -26,6 +26,7 @@ Nó cũng có thể sử dụng một phiên cố định. Tuy nhiên, nếu b�
 ngay sau khi bạn hoàn thành việc sử dụng chúng.
 
 ## Cài đặt
+[Cách cài đặt](https://github.com/DauDau432/Browser_JSBypass_v1/blob/main/install.md)
 
 ### Docker
 
